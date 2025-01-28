@@ -7,6 +7,8 @@ public class EnemyMovement : MonoBehaviour
     private GameObject player;
     public float speed;
     public int health;
+    public GameObject whichSpawner;
+    private Spawner spawnScript;
 
     private void Start()
     {
@@ -29,6 +31,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void Dead()
     {
+        spawnScript = whichSpawner.GetComponent<Spawner>();
+        spawnScript.enemyAmount--;
         Destroy(gameObject);
     }
     private void OnCollisionEnter2D(Collision2D collision)

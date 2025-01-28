@@ -20,6 +20,8 @@ public class Spawner : MonoBehaviour
         if(enemyAmount <= 9)
         {
             GameObject enemyclones = Instantiate(enemy, spawnPlace);
+            EnemyMovement enemyScript = enemyclones.GetComponent<EnemyMovement>();
+            enemyScript.whichSpawner = gameObject;
             enemyclones.transform.position = spawnPlace.position;
         }
     }

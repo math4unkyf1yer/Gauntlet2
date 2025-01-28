@@ -13,7 +13,11 @@ public class TopDownMovement : MonoBehaviour
     public float fireRate = 0.5f; // Time between shots
 
     private Vector2 moveInput;
+    private Vector2 lastMoveDirection = Vector2.up; // Default to shooting upward initially
     private float nextFireTime = 0f;
+
+    [Header("key")]
+    public bool[] keys;
 
     void Update()
     {
@@ -21,8 +25,15 @@ public class TopDownMovement : MonoBehaviour
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
 
+        // Normalize movement input if necessary
         if (moveInput.sqrMagnitude > 1)
             moveInput = moveInput.normalized;
+
+        // Update the last move direction if the player is moving
+        if (moveInput != Vector2.zero)
+        {
+            lastMoveDirection = moveInput;
+        }
 
         // Shooting input
         if (Input.GetKey(KeyCode.Space) && Time.time >= nextFireTime)
@@ -43,10 +54,11 @@ public class TopDownMovement : MonoBehaviour
         // Spawn projectile
         GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
 
-        // Calculate shoot direction
-        Vector2 shootDirection = moveInput != Vector2.zero ? moveInput : Vector2.up; // Default to shooting up if idle
+        // Use the last move direction as the shoot direction
+        Vector2 shootDirection = lastMoveDirection;
 
         // Assign direction to the projectile
         projectile.GetComponent<Shoot>().SetDirection(shootDirection);
     }
+
 }
