@@ -16,9 +16,9 @@ public class Spawner : MonoBehaviour
 
     private void spawnEnemy()
     {
-        enemyAmount++;
         if(enemyAmount <= 9)
         {
+            enemyAmount++;
             GameObject enemyclones = Instantiate(enemy, spawnPlace);
             EnemyMovement enemyScript = enemyclones.GetComponent<EnemyMovement>();
             enemyScript.whichSpawner = gameObject;

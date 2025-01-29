@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
     private void Dead()
     {
         spawnScript = whichSpawner.GetComponent<Spawner>();
-        spawnScript.enemyAmount--;
+        spawnScript.enemyAmount--;                     
         Destroy(gameObject);
     }
     private void OnCollisionEnter2D(Collision2D collision)
