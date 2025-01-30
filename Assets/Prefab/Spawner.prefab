@@ -151,7 +151,7 @@ MonoBehaviour:
   enemy: {fileID: 3818438772452663364, guid: 299530b091d39fe45ae61db563045f8e, type: 3}
   enemyAmount: 0
   spawnPlace: {fileID: 82900879064825967}
-  health: 0
+  health: 30
 --- !u!50 &3633460254896174154
 Rigidbody2D:
   serializedVersion: 4

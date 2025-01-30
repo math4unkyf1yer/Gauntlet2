@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TopDownMovement : MonoBehaviour
 {
@@ -17,11 +18,21 @@ public class TopDownMovement : MonoBehaviour
     private Vector2 lastMoveDirection = Vector2.up; // Default to shooting upward initially
     private float nextFireTime = 0f;
 
+
     [Header("Key")]
     public bool[] keys;
 
+    private void Start()
+    {
+        
+    }
     void Update()
     {
+        if (Cursor.visible)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         // Movement input (only if not shooting)
         if (!isShooting)
         {
@@ -75,7 +86,7 @@ public class TopDownMovement : MonoBehaviour
     // Coroutine to reset the shooting state after a small delay (can be adjusted)
     private IEnumerator ResetShootingState()
     {
-        yield return new WaitForSeconds(0.5f); // Short delay after shooting
+        yield return new WaitForSeconds(0.3f); // Short delay after shooting
         isShooting = false;
     }
 

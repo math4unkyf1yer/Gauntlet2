@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     public int health;
     public GameObject whichSpawner;
     private Spawner spawnScript;
+    public int Damage;
 
     private void Start()
     {
@@ -41,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
         {
             health -= 5;
             Health healthScript = collision.gameObject.GetComponent<Health>();
-            healthScript.TookDamage(5);
+            healthScript.TookDamage(Damage);
         }
         if(collision.gameObject.tag == "Bullet")
         {

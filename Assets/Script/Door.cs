@@ -12,6 +12,7 @@ public class Door : MonoBehaviour
             TopDownMovement movementScript = collision.gameObject.GetComponent<TopDownMovement>();
             if(movementScript.keys[doorNb] == true)
             {
+                movementScript.keys[doorNb] = false;
                 Destroy(gameObject);
             }
         }

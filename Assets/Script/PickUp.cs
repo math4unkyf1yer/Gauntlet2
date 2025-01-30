@@ -9,9 +9,18 @@ public class PickUp : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            TopDownMovement movementScript = collision.gameObject.GetComponent<TopDownMovement>();
-            movementScript.keys[keyNb] = true;
-            Destroy(gameObject);
+            if(gameObject.tag == "Key")
+            {
+                TopDownMovement movementScript = collision.gameObject.GetComponent<TopDownMovement>();
+                movementScript.keys[keyNb] = true;
+                Destroy(gameObject);
+            }
+            if(gameObject.tag == "Health")
+            {
+                Health healthScript = collision.gameObject.GetComponent<Health>();
+                healthScript.GainHealth(50);
+                Destroy(gameObject);
+            }
         }
     }
 }
