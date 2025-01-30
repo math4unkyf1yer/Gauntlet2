@@ -75,18 +75,19 @@ public class TopDownMovement : MonoBehaviour
 
         // Use the last move direction as the shoot direction
         Vector2 shootDirection = lastMoveDirection;
+        Shoot projectileScript = projectile.GetComponent<Shoot>();
 
         // Assign direction to the projectile
         projectile.GetComponent<Shoot>().SetDirection(shootDirection);
 
+        projectileScript.SetDirection(lastMoveDirection);
+        projectileScript.SetShooter(this);
         // Optionally, add a delay to stop shooting
-        StartCoroutine(ResetShootingState());
     }
 
     // Coroutine to reset the shooting state after a small delay (can be adjusted)
-    private IEnumerator ResetShootingState()
+    public void ResetShooting()
     {
-        yield return new WaitForSeconds(0.3f); // Short delay after shooting
         isShooting = false;
     }
 

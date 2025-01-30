@@ -8,11 +8,17 @@ public class Shoot : MonoBehaviour
     public float lifeTime = 3f;
 
     private Vector2 moveDirection;
+    private TopDownMovement shooter; // Reference to the shooter script
 
     public void SetDirection(Vector2 direction)
     {
         moveDirection = direction.normalized;
-        Destroy(gameObject, lifeTime); // Destroy after a set time
+        Destroy(gameObject, lifeTime);
+    }
+
+    public void SetShooter(TopDownMovement shooterScript)
+    {
+        shooter = shooterScript;
     }
 
     void Update()
@@ -20,10 +26,16 @@ public class Shoot : MonoBehaviour
         transform.Translate(moveDirection * speed * Time.deltaTime);
     }
 
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (shooter != null)
+        {
+            shooter.ResetShooting(); // Reset shooting state when the bullet is destroyed
+        }
     }
 }
