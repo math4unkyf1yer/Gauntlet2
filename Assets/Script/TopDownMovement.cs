@@ -24,15 +24,15 @@ public class TopDownMovement : MonoBehaviour
 
     private void Start()
     {
+        if (Cursor.visible)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false; 
+        }
         
     }
     void Update()
     {
-        if (Cursor.visible)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
         // Movement input (only if not shooting)
         if (!isShooting)
         {

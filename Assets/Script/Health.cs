@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class Health : MonoBehaviour
 {
     public int health = 200;
 
     public Transform startPos;
+    public GameObject GameOver;
+    public GameObject Level1;
+    public GameObject Level2;
+    public TMP_Text healthText;
+    public void Start()
+    {
 
-    [Header("Text")]
-    public TextMeshProUGUI playerHealth;
+    }
 
     public void TookDamage(int damage)
     {
@@ -22,14 +28,22 @@ public class Health : MonoBehaviour
     }
     private void Update()
     {
-        playerHealth.text = "Health:" + health.ToString();
+        healthText.text = "health:" + health.ToString();
         if (health <= 0)
         {
             Dead();
+
         }
     }
     public void Dead()
     {
-        //go back to menu
+        Level1.SetActive(false);
+        Level2.SetActive(false);
+        GameOver.SetActive(true);
+        Cursor.lockState = CursorLockMode.None; // Unlocks the cursor
+        Cursor.visible = true; // Makes it visible
+        health = 200;
+        gameObject.transform.position = startPos.position;
     }
+
 }
