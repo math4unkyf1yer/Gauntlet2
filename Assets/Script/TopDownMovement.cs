@@ -18,6 +18,9 @@ public class TopDownMovement : MonoBehaviour
     private Vector2 lastMoveDirection = Vector2.up; // Default to shooting upward initially
     private float nextFireTime = 0f;
 
+    public bool isOrange;
+    public bool isWhite;
+
 
     [Header("Key")]
     public bool[] keys;

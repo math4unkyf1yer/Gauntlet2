@@ -6,7 +6,7 @@ using TMPro;
 
 public class Health : MonoBehaviour
 {
-    public int health = 200;
+    public int health = 300;
 
     public Transform startPos;
     public GameObject GameOver;

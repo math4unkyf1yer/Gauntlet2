@@ -46,7 +46,8 @@ public class EnemyMovement : MonoBehaviour
         }
         if(collision.gameObject.tag == "Bullet")
         {
-            health -= 10;
+            Shoot shootScript = collision.gameObject.GetComponent<Shoot>();
+            health -= shootScript.damage;
         }
     }
 }

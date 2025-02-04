@@ -5,7 +5,9 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     public float speed = 10f;
+    private float fasterSpeed = 13f;
     public float lifeTime = 3f;
+    public int damage = 10;
 
     private Vector2 moveDirection;
     private TopDownMovement shooter; // Reference to the shooter script
@@ -19,11 +21,22 @@ public class Shoot : MonoBehaviour
     public void SetShooter(TopDownMovement shooterScript)
     {
         shooter = shooterScript;
+        if(shooter.isOrange == true && damage == 10)
+        {
+            damage = 15;
+        }
     }
 
     void Update()
     {
-        transform.Translate(moveDirection * speed * Time.deltaTime);
+        if (shooter.isWhite)
+        {
+            transform.Translate(moveDirection * fasterSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(moveDirection * speed * Time.deltaTime);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
