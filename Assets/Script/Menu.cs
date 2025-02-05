@@ -9,6 +9,11 @@ public class Menu : MonoBehaviour
     public GameObject level1;
     public GameObject chooseChracter;
     public GameObject startButton;
+
+    
+
+    public GameObject creditPage;
+
     public SpriteRenderer changePlayerColor;
 
     [Header("Script")]
@@ -21,6 +26,16 @@ public class Menu : MonoBehaviour
         chooseChracter.SetActive(true);
         startButton.SetActive(false);
     }
+    public void OnClickCredit()
+    {
+        creditPage.SetActive(true);
+        startButton.SetActive(false);
+    }
+    public void OnClickBackToMenu()
+    {
+        creditPage.SetActive(false);
+        startButton.SetActive(true);
+    }
     public void OnClickYellow()
     {
         OnClickCharacter();
@@ -30,7 +45,7 @@ public class Menu : MonoBehaviour
     public void OnClickBlue()
     {
         OnClickCharacter();
-        changePlayerColor.color = Color.blue;
+        changePlayerColor.color = Color.cyan;
         healthScript.health += 50;
     }
     public void OnClickGreen()

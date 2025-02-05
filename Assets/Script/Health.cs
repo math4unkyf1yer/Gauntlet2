@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     public GameObject Level1;
     public GameObject Level2;
     public TMP_Text healthText;
+    public AudioSource playerAudio;
     public void Start()
     {
 
@@ -44,6 +45,7 @@ public class Health : MonoBehaviour
         Cursor.visible = true; // Makes it visible
         health = 200;
         gameObject.transform.position = startPos.position;
+        playerAudio.enabled = false;
     }
 
 }

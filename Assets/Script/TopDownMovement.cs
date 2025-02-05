@@ -21,12 +21,15 @@ public class TopDownMovement : MonoBehaviour
     public bool isOrange;
     public bool isWhite;
 
+    private Animator playerAnimation;
+
 
     [Header("Key")]
     public bool[] keys;
 
     private void Start()
     {
+        playerAnimation = gameObject.GetComponent<Animator>();
         if (Cursor.visible)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -52,6 +55,9 @@ public class TopDownMovement : MonoBehaviour
                 lastMoveDirection = moveInput;
             }
         }
+        // Update Animator parameters
+        playerAnimation.SetFloat("MoveX", moveInput.x);
+        playerAnimation.SetFloat("MoveY", moveInput.y);
 
         // Shooting input
         if (Input.GetKey(KeyCode.Space) && Time.time >= nextFireTime && !isShooting)
@@ -60,6 +66,7 @@ public class TopDownMovement : MonoBehaviour
             nextFireTime = Time.time + fireRate;
         }
     }
+
 
     void FixedUpdate()
     {
@@ -70,9 +77,9 @@ public class TopDownMovement : MonoBehaviour
         }
     }
 
+
     void Shoot()
     {
-        isShooting = true;
         // Spawn projectile
         GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
 
