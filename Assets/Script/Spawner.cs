@@ -11,12 +11,12 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("spawnEnemy",2,3);
+        InvokeRepeating("spawnEnemy",2,5);
     }
 
     private void spawnEnemy()
     {
-        if(enemyAmount <= 6)
+        if(enemyAmount <= 5)
         {
             enemyAmount++;
             GameObject enemyclones = Instantiate(enemy, spawnPlace);
