@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
 
     private void spawnEnemy()
     {
-        if(enemyAmount <= 9)
+        if(enemyAmount <= 6)
         {
             enemyAmount++;
             GameObject enemyclones = Instantiate(enemy, spawnPlace);

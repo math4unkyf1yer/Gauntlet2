@@ -10,41 +10,60 @@ public class EnemyMovement : MonoBehaviour
     public GameObject whichSpawner;
     private Spawner spawnScript;
     public int Damage;
+    private Animator animator;
+    private Vector2 lastDirection;
 
     private void Start()
     {
         player = GameObject.Find("Player");
-
+        animator = GetComponent<Animator>();
     }
+
     private void Update()
     {
         if (player != null)
         {
-            // Move the enemy towards the player's position
+            // Move the enemy towards the player
             Vector3 direction = (player.transform.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
+
+            // Update animation
+            UpdateAnimation(direction);
         }
-        if(health <= 0)
+
+        if (health <= 0)
         {
             Dead();
         }
     }
 
+    private void UpdateAnimation(Vector3 direction)
+    {
+        if (direction.magnitude > 0)
+        {
+            lastDirection = new Vector2(direction.x, direction.y);
+        }
+
+        animator.SetFloat("MoveX", lastDirection.x);
+        animator.SetFloat("MoveY", lastDirection.y);
+    }
+
     private void Dead()
     {
         spawnScript = whichSpawner.GetComponent<Spawner>();
-        spawnScript.enemyAmount--;                     
+        spawnScript.enemyAmount--;
         Destroy(gameObject);
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             health -= 5;
             Health healthScript = collision.gameObject.GetComponent<Health>();
             healthScript.TookDamage(Damage);
         }
-        if(collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Bullet")
         {
             Shoot shootScript = collision.gameObject.GetComponent<Shoot>();
             health -= shootScript.damage;

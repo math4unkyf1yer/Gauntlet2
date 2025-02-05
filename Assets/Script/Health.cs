@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
     }
     private void Update()
     {
-        healthText.text = "health:" + health.ToString();
+        healthText.text = health.ToString();
         if (health <= 0)
         {
             Dead();
