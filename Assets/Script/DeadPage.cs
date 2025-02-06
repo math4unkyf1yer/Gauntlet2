@@ -22,6 +22,6 @@ public class DeadPage : MonoBehaviour
     {
         Menu.SetActive(true);
         GameOver.SetActive(false);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

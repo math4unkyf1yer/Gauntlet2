@@ -13,6 +13,7 @@ public class Menu : MonoBehaviour
     
 
     public GameObject creditPage;
+    public GameObject titleImage;
 
     public SpriteRenderer changePlayerColor;
 
@@ -25,6 +26,7 @@ public class Menu : MonoBehaviour
         movementScript = player.GetComponent<TopDownMovement>();
         chooseChracter.SetActive(true);
         startButton.SetActive(false);
+        titleImage.SetActive(false);
     }
     public void OnClickCredit()
     {
